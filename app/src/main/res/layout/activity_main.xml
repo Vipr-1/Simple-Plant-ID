@@ -8,36 +8,51 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+    </androidx.camera.view.PreviewView>
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="376dp"
-        android:layout_height="277dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="426dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/jetbrains_mono_semibold"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:text="Take A picture to identify a plant!"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="131dp"
-        android:layout_height="134dp"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="382dp" />
-
-    <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="83dp"
-        android:layout_height="85dp"
-        app:srcCompat="@android:drawable/ic_dialog_info"
-        tools:layout_editor_absoluteX="312dp"
-        tools:layout_editor_absoluteY="640dp" />
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
