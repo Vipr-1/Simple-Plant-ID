@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Plant ID"
+rootProject.name = "Simple Plant ID"
 include(":app")

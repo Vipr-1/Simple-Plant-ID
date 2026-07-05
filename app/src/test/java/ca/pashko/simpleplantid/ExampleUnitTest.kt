@@ -1,4 +1,4 @@
-package ca.pashko.plantid
+package ca.pashko.simpleplantid
 
 import org.junit.Test
 

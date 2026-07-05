@@ -1,4 +1,4 @@
-package ca.pashko.plantid
+package ca.pashko.simpleplantid
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ca.pashko.plantid", appContext.packageName)
+        assertEquals("ca.pashko.simpleplantid", appContext.packageName)
     }
 }

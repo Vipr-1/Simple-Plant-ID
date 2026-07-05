@@ -5,39 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="376dp"
-        android:layout_height="277dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="426dp"
-        android:fontFamily="@font/jetbrains_mono_semibold"
-        android:text="Take A picture to identify a plant!"
-        android:textSize="48sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="131dp"
-        android:layout_height="134dp"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="382dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="83dp"
-        android:layout_height="85dp"
-        app:srcCompat="@android:drawable/ic_dialog_info"
-        tools:layout_editor_absoluteX="312dp"
-        tools:layout_editor_absoluteY="640dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ca.pashko.plantid"
+    namespace = "ca.pashko.simpleplantid"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -11,8 +11,8 @@ android {
     }
 
     defaultConfig {
-        applicationId = "ca.pashko.plantid"
-        minSdk = 33
+        applicationId = "ca.pashko.simpleplantid"
+        minSdk = 34
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -31,9 +31,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -41,11 +38,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
