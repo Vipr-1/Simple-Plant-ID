@@ -1,5 +1,5 @@
 package ca.pashko.simpleplantid
-
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -10,8 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import android.util.Log
-
-
+import androidx.activity.result.ActivityResultLauncher
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +23,30 @@ class MainActivity : AppCompatActivity() {
 	val leavesNotSetText = "Photo of Leaves"
 	val leavesSetText = "Leaves ✅"
 	
+	val noPhotoDialog = MaterialAlertDialogBuilder(this)
+	
+	
+	
+	var flowerUri: Uri? = null
+	var leavesUri: Uri? = null
+	
+	val pickFlower = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+		if (uri != null) {
+			flowerSelected = true
+			flowerUri = uri
+			val flowerButton: Button = findViewById(R.id.flowerButton)
+			flowerButton.text = flowerSetText
+		}
+	}
+	val pickLeaves = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+		if (uri != null) {
+			leavesSelected = true
+			leavesUri = uri
+			val leavesButton: Button = findViewById(R.id.leavesButton)
+			leavesButton.text = leavesSetText
+		}
+	}
+	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		enableEdgeToEdge()
@@ -32,14 +56,8 @@ class MainActivity : AppCompatActivity() {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 			insets
 		}
-		val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-			if (uri != null) {
-				Log.d("PhotoPicker", "Selected URI: $uri")
-				// TODO: Use the URI to display the image (e.g., using Glide or Coil)
-			} else {
-				Log.d("PhotoPicker", "No media selected")
-			}
-		}
+		
+		
 		val flowerButton: Button = findViewById(R.id.flowerButton)
 		val leavesButton: Button = findViewById(R.id.leavesButton)
 		val submitButton: Button = findViewById(R.id.submitButton)
@@ -48,16 +66,26 @@ class MainActivity : AppCompatActivity() {
 		leavesButton.setOnClickListener { leavesClick() }
 		submitButton.setOnClickListener { submitClick() }
 		infoButton.setOnClickListener { infoClick() }
+		noPhotoDialog.setTitle("Incorrect Submission")
+		noPhotoDialog.setMessage("Please select both a flower and leaves photo.")
+		noPhotoDialog.setPositiveButton("OK") { dialog, _ ->
+			dialog.dismiss()
+		}
 	}
 	
 	fun flowerClick(){
-	
+		pickFlower.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 	}
 	fun leavesClick(){
-	
+		pickLeaves.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+		
 	}
-	fun submitClick(){
-	
+	fun submitClick() {
+		if (flowerUri != null && leavesUri != null) {
+			//TODO: Submit to API
+		} else {
+			noPhotoDialog.show()
+		}
 	}
 	fun infoClick(){
 	
