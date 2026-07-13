@@ -16,7 +16,7 @@ public class IdentAPI {
 
 	private String apiKey;
 	private static final String PROJECT = "all";
-	private static final String URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + "?api-key=YOUR-PRIVATE-API-KEY-HERE";
+	private String URL;
 
 
 
@@ -24,10 +24,11 @@ public class IdentAPI {
 		this.apiKey = apiKey;
 		this.flowerImage = flowerImage;
 		this.leavesImage = leavesImage;
+		this.URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + "?api-key=" + apiKey;
 
 	}
 
-	public static void makeRequest() {
+	public String makeRequest() {
 
 		OkHttpClient client = new OkHttpClient();
 
@@ -50,9 +51,9 @@ public class IdentAPI {
 		try (Response response = client.newCall(request).execute()) {
 			if (response.isSuccessful() && response.body() != null) {
 				String jsonString = response.body().string();
-				System.out.println(jsonString);
+				return (jsonString);
 			} else {
-				System.out.println("Request failed: " + response.code());
+				return ("Request failed: " + response.code());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

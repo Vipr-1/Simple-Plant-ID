@@ -15,6 +15,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream
 import android.content.Context
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -92,12 +96,26 @@ class MainActivity : AppCompatActivity() {
 		
 	}
 	fun submitClick() {
-		if (flowerUri != null && leavesUri != null) {
+		val currentFlowerUri = flowerUri
+		val currentLeavesUri = leavesUri
+		
+		if (currentFlowerUri != null && currentLeavesUri != null) {
 			//TODO: Submit to API
-			
-			
-			val identAPI = IdentAPI(apiKey, )
-			
+			val flowerFile = getFileFromUri(this, currentFlowerUri)
+			val leavesFile = getFileFromUri(this, currentLeavesUri)
+			if (flowerFile != null && leavesFile != null) {
+				lifecycleScope.launch {
+					withContext(Dispatchers.IO) {
+						val identAPI = IdentAPI(apiKey, flowerFile, leavesFile)
+						val output = identAPI.makeRequest()
+					}
+				}
+				
+				
+			}
+			else{
+				Log.e("Error", "File is null")
+			}
 		} else {
 			noPhotoDialog.show()
 		}
