@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
 	alias(libs.plugins.android.application)
 }
@@ -16,9 +17,16 @@ android {
 		targetSdk = 36
 		versionCode = 1
 		versionName = "1.0"
+		val properties = Properties()
+		properties.load(project.rootProject.file("local.properties").inputStream())
+		val apiKey = properties.getProperty("plantNetAPI") ?: "\"\""
+		buildConfigField("String", "plantNetAPI", apiKey)
 		
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
+	
+	
+	buildFeatures { buildConfig = true}
 	
 	buildTypes {
 		release {

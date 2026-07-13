@@ -11,25 +11,34 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class IdentAPI {
-	private static final String IMAGE1 = "/data/media/image_1.jpeg";
-	private static final String IMAGE2 = "/data/media/image_2.jpeg";
+	File flowerImage;
+	File leavesImage;
+
+	private String apiKey;
 	private static final String PROJECT = "all";
 	private static final String URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + "?api-key=YOUR-PRIVATE-API-KEY-HERE";
 
+
+
+	public IdentAPI(String apiKey, File flowerImage, File leavesImage) {
+		this.apiKey = apiKey;
+		this.flowerImage = flowerImage;
+		this.leavesImage = leavesImage;
+
+	}
+
 	public static void makeRequest() {
-		File file1 = new File(IMAGE1);
-		File file2 = new File(IMAGE2);
 
 		OkHttpClient client = new OkHttpClient();
 
 		// Build the multipart request body
 		RequestBody requestBody = new MultipartBody.Builder()
 				.setType(MultipartBody.FORM)
-				.addFormDataPart("images", file1.getName(),
-						RequestBody.create(file1, MediaType.parse("image/jpeg")))
+				.addFormDataPart("images", this.flowerImage.getName(),
+						RequestBody.create(this.flowerImage, MediaType.parse("image/jpeg")))
 				.addFormDataPart("organs", "flower")
-				.addFormDataPart("images", file2.getName(),
-						RequestBody.create(file2, MediaType.parse("image/jpeg")))
+				.addFormDataPart("images", this.leavesImage.getName(),
+						RequestBody.create(this.leavesImage, MediaType.parse("image/jpeg")))
 				.addFormDataPart("organs", "leaf")
 				.build();
 
