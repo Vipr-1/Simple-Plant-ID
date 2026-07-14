@@ -109,6 +109,9 @@ class MainActivity : AppCompatActivity() {
 						val identAPI = IdentAPI(apiKey, flowerFile, leavesFile)
 						val output = identAPI.makeRequest()
 					}
+					withContext(Dispatchers.Main){
+					
+					}
 				}
 				
 				
