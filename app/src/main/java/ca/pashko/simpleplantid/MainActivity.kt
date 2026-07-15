@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream
@@ -19,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 	
@@ -149,6 +148,14 @@ class MainActivity : AppCompatActivity() {
 			e.printStackTrace()
 			null
 		}
+	}
+	
+	fun parseJson(apiResponse : String){
+		val jsonData = JSONObject(apiResponse)
+		val resultsArray = jsonData.getJSONArray("results")
+		val mostLikelyPlant = resultsArray.getJSONObject(0)
+		val speciesInfo = mostLikelyPlant.getJSONObject("species")
+		val scientificName = speciesInfo.getString("scientificName")
 	}
 	
 	fun infoClick(){
