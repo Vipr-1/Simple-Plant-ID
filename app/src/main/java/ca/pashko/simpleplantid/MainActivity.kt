@@ -160,8 +160,10 @@ class MainActivity : AppCompatActivity() {
 		leavesUri = null
 		flowerSelected = false
 		leavesSelected = false
+		findViewById<Button>(R.id.flowerButton).text = "Photo of Flower"
+		findViewById<Button>(R.id.leavesButton).text = "Photo of Leaves"
 	}
 	private fun infoClick() {
-		showDialog("Simple Plant ID", "© 2026 Damon Pashko \n GNU GPLv3 \n Pl@ntNet API key: $apiKey")
+		showDialog("Simple Plant ID", "© 2026 Damon Pashko \n GNU GPLv3 \n https://github.com/Vipr-1/Simple-Plant-ID \n Pl@ntNet API key: $apiKey")
 	}
 }
