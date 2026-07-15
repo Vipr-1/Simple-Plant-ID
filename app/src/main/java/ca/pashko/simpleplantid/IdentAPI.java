@@ -58,5 +58,6 @@ public class IdentAPI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return ("error");
 	}
 }
